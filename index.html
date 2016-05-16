@@ -17,6 +17,7 @@
         <script src="vendors/bower_components/angular/angular.js"></script>
         
         <!-- Angular Plugins -->
+        <link rel="stylesheet" href="vendors/bower_components/angular-chart.js/dist/angular-chart.css">
         <script src="vendors/bower_components/Chart.js/Chart.js"></script>
         <script src="vendors/bower_components/angular-chart.js/dist/angular-chart.js"></script>
         
@@ -73,8 +74,26 @@
                         <td>{{ movie.Year }}</td>
                     </tr>
                     <tr ng-show="movie.show">
-                        <td colspan="2">
-                            IMDB Rating: {{ movie.imdbRating }}
+                        <td colspan="2" class="row">
+                            <div class="col-xs-8">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <p><strong>Actors:</strong> {{ movie.Actors }}</p>
+                                        <p><strong>Awards:</strong> {{ movie.Awards }}</p>
+                                        <p><strong>Director:</strong> {{ movie.Director }}</p>
+                                        <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+                                        <p><strong>Rated:</strong> {{ movie.Rated }}</p>
+                                        <p><strong>Runtime:</strong> {{ movie.Runtime }}</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <strong>Ratings</strong>
+                                <canvas id="bar" class="chart chart-bar" chart-data="ratingData[key]" chart-labels="ratingLabels"></canvas>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

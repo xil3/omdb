@@ -1,4 +1,4 @@
-window.omdbApp = angular.module('omdbApp', []).config(function($interpolateProvider){
+window.omdbApp = angular.module('omdbApp', ["chart.js"]).config(function($interpolateProvider){
     
 }).run(function ($rootScope, $timeout) {
 

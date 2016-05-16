@@ -6,6 +6,9 @@ omdbApp.controller('SearchController', function ($scope, apiHelper) {
     $scope.searchData.type = "movie";
     $scope.searchData.tomatoes = "true";
     
+    $scope.ratingLabels = ['IMDB', 'Rotten Tomatoes'];
+    $scope.ratingData = [];
+    
     /*
      * Private Methods
      */
@@ -60,6 +63,10 @@ omdbApp.controller('SearchController', function ($scope, apiHelper) {
      */
     $scope.showDetails = function(key) {
         if($scope.movies[key].imdbRating) {
+            $scope.ratingData[key] = [
+                [$scope.movies[key].imdbRating, $scope.movies[key].tomatoRating]
+            ];
+            
             showHideDesc(key);
         } else {
             apiHelper.getMovies({
@@ -68,8 +75,14 @@ omdbApp.controller('SearchController', function ($scope, apiHelper) {
             }, function(data) {
                 $scope.movies[key] = data;
 
+                $scope.ratingData[key] = [
+                    [$scope.movies[key].imdbRating, $scope.movies[key].tomatoRating]
+                ];
+
                 showHideDesc(key);
             });
         }
+        
+        
     };
 });
