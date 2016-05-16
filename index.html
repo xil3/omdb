@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="omdbApp">
+    <head>
+        <title>OMDB Project</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- jQuery -->
+        <script src="vendors/bower_components/jquery/dist/jquery.js"></script>
+        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="vendors/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="vendors/bower_components/bootstrap/dist/css/bootstrap-theme.css">
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        
+        <!-- Angular -->
+        <script src="vendors/bower_components/angular/angular.js"></script>
+        
+        <!-- Angular Plugins -->
+        <script src="vendors/bower_components/Chart.js/Chart.js"></script>
+        <script src="vendors/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+        
+        <!-- App -->
+        <script src="app/app.js"></script>
+        <!-- Services -->
+        <script src="app/services/apiHelper.js"></script>
+        <!-- Controllers -->
+        <script src="app/controllers/search.js"></script>
+    </head>
+    <body ng-controller="SearchController">
+        <div class="container" role="main">
+            <h1>OMDB Project</h1>
+
+            <hr />
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="title" placeholder="Title/ID" ng-model="searchData.title">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="year" placeholder="Year (optional)" ng-model="searchData.year">
+                </div>
+                <div class="form-group">
+                    <select id="type" class="form-control" ng-model="searchData.type">
+                        <option value="movie">Movie</option>
+                        <option value="series">Series</option>
+                        <option value="episode">Episode</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="tomatoes" class="form-control" ng-model="searchData.tomatoes">
+                        <option value="true">Include Rotten Tomatoes Rating</option>
+                        <option value="false">Don't Include Rotten Tomatoes Rating</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-click="getMovies()">Search</button>
+            </form>
+
+            <hr />
+
+            <!-- Movie Results -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="(key, movie) in movies">
+                    <tr ng-click="showDetails(key)">
+                        <td>{{ movie.Title }}</td>
+                        <td>{{ movie.Year }}</td>
+                    </tr>
+                    <tr ng-show="movie.show">
+                        <td colspan="2">
+                            IMDB Rating: {{ movie.imdbRating }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
