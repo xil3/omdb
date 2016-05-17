@@ -21,7 +21,7 @@ describe('apiHelper test', function(){
             httpBackend.verifyNoOutstandingExpectation();
         });
         
-        it('returns single JSON object', inject(function(apiHelper) {
+        it('returns valid JSON object', inject(function(apiHelper) {
             var response = {
                 Title: "The Shawshank Redemption",
                 Year: "1994",
