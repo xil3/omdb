@@ -6,6 +6,8 @@ omdbApp.factory('apiHelper', function($http) {
             plot: "full",
             r: "json"
         };
+        
+    apiHelper.data = {};
     
     /**
      * Checks if the search query is an IMDB ID
@@ -48,6 +50,7 @@ omdbApp.factory('apiHelper', function($http) {
             'params': params
         }).success(function(data){
             console.log(data);
+            apiHelper.data = data;
             callback(data);
         });
     };

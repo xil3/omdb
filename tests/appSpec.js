@@ -22,7 +22,7 @@ describe('apiHelper test', function(){
         });
         
         it('returns single JSON object', inject(function(apiHelper) {
-            httpBackend.expectJSONP("http://www.omdbapi.com?callback=JSON_CALLBACK&i=tt0082498&plot=full&r=json&tomatoes=true&type=movie&y=").respond({
+            var response = {
                 Title: "The Shawshank Redemption",
                 Year: "1994",
                 Rated: "R",
@@ -43,18 +43,19 @@ describe('apiHelper test', function(){
                 imdbID: "tt0111161",
                 Type: "movie",
                 Response: "True"
-            });
+            };
+            
+            httpBackend.expectJSONP("http://www.omdbapi.com?callback=JSON_CALLBACK&i=tt0082498&plot=full&r=json&tomatoes=true&type=movie&y=").respond(response, 200);
             
             apiHelper.getMovies({
                 'search': 'tt0082498',
                 'y': '',
                 'type': 'movie',
                 'tomatoes': true
-            }, function(response) {
-                // the response should just be an object
-                httpBackend.flush()
-                expect(response).toEqual("lala");
-            });
+            }, angular.noop);
+            
+            httpBackend.flush();
+            expect(apiHelper.data).toEqual(response);
         }));
     });
 });
