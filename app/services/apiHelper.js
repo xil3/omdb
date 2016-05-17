@@ -7,6 +7,7 @@ omdbApp.factory('apiHelper', function($http) {
             r: "json"
         };
         
+    // this is used for testing the data, but can also be used to retreive the last result, since it will be cached
     apiHelper.data = {};
     
     /**
