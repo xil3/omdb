@@ -19,3 +19,5 @@ For the integration tests, you'll need protractor installed - you can find out h
 
 protractor conf.js
 
+
+![alt tag](https://raw.githubusercontent.com/xil3/omdb/master/omdb_ss1.png)
